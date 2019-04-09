@@ -6,7 +6,7 @@ function [phi] = mslevelset3d(I,x,y,z,r,nu,sigma,n,sx,sy,sz)
 %       x, y, z - voxel point position with radius (r)
 %       nu      - lengterm Constant
 %       sigma   - pixel size of the kernel
-%       n       - number of 3D image scale down, default is 3 (1/2^(n-1))
+%       s       - number of 3D image scale down, default is 3 (1/2^(n-1))
 %       sx,sy,sz- scaling factor
 %
 %   OUTPUT:
@@ -22,22 +22,27 @@ function [phi] = mslevelset3d(I,x,y,z,r,nu,sigma,n,sx,sy,sz)
 %       1.0 - 16/05/2016 First implementation
 %
 %   Example:
-%       I = zeros(200,200,50);
-%       I(100,100,25) = 1;
-%       I = bwdist(I) <20;
-%       I = double(I);
-%       I = I *  255;
-%       I = imnoise(I , 'gaussian', 0, 0.001);
-%       I = (I - min(I(:))) / (max(I(:)) - min(I(:))); % normalize 
-%       nu = 0.0006*255*255;
-%       sigma = 4;
-%       x = 25; y = 2; z = 25; r = 5;
-%       n = 3;
-%       phi = mslevelset3d(I,x,y,z,r,nu,sigma,n,sx,sy,sz);
+%       ims = zeros(200,200,49);
+%       ims(:,:,:) = 0;
+%       ims(71:200,:,:)=1;
+%       ims(71:160,71:130,15:35)=0;
+%       im = double(uint8(255 * ims));
+%       im = imnoise(im, 'gaussian', 0, 0.001);
+%       im = imnoise(im,'speckle');
+%       im = (im - min(im(:))) / (max(im(:)) - min(im(:))); % normalize 
+%       x= 25; y = 30; z = 25; r = 7;
+%       sigma = 4;                                                          
+%       nu = 39;                                                            
+%       s = 3;                                                              
+%       nx = s;                                                             
+%       ny = s;                                                              
+%       nz = 1;
+%       phi = mslevelset3d(im,x,y,z,r,nu,sigma,s,sx,sy,sz);
 %
 %   Requirement:
-%     1. levelset3d.m
-%     2. bm4d.m from:
+%     1. mslevelset3d.m
+%     2. levelset3d.m
+%     3. bm4d.m from:
 %       [1] M. Maggioni, V. Katkovnik, K. Egiazarian, A. Foi, "A Nonlocal
 %           Transform-Domain Filter for Volumetric Data Denoising and
 %           Reconstruction", IEEE Trans. Image Process., vol. 22, no. 1, 

@@ -35,7 +35,7 @@ imneg = (imcurv .* boundary) < 0;
 %% remove bottom and top
 ind = find(imneg);
 [x,y,z] = ind2sub(size(imth),ind);
-xc = mean(x); %yc = mean(y); zc = mean(z);
+xc = mean(x); 
 idx = x>xc-std(x) & x<xc+0.3*std(x);
 imneg(ind(~idx)) = 0;
 end

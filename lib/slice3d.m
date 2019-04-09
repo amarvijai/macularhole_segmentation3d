@@ -32,7 +32,7 @@ imsurf(idx) = 1;
 imsurf = (imsurf==1);
 %% surface image - dilate
 imd = bwdistsc(imsurf,[dx,dy,dz]);
-imsurf = imd<40;
+imsurf = imd<36;
 %% box
 imsurf(1:end,1:end,1) = 1;
 imsurf(1:end,1:end,end) = 1;
@@ -54,7 +54,7 @@ idx = find(y==max(y));
 immask = imlabelb==idx;
 imths = immultiply(immask,imth);
 %% grow
-grow = bwdistsc(imths,[dx,dy,dz]) < 26;
+grow = bwdistsc(imths,[dx,dy,dz]) < 28;
 imths = grow .* imth;
 %% filter
 cc = bwconncomp(imths);

@@ -1,5 +1,5 @@
 # macularhole_segmentation3d
-3d multiscale segmentation of macular hole<br/>
+3d multiscale segmentation and measurements of macular holes<br/>
 
 | INPUT | OUTPUT |
 | ------------- | ------------- |

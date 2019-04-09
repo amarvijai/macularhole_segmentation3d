@@ -8,6 +8,7 @@ function phi = levelset3d(I,phi,nu,sigma,init)
 %       
 %   OUTPUT:
 %       phi  - 3D image segmented 
+%       C    - Curvature of phi == 0
 %
 %   USAGE:
 %      3D Level set segmentation
@@ -18,19 +19,6 @@ function phi = levelset3d(I,phi,nu,sigma,init)
 %   VERSION:
 %       1.0 - 16/05/2016 First implementation
 %
-%   Example:
-%       I = zeros(200,200,50);
-%       I(100,100,25) = 1;
-%       I = bwdist(I) <20;
-%       I = double(I);
-%       I = I *  255;
-%       I = imnoise(I , 'gaussian', 0, 0.001);
-%       I = (I - min(I(:))) / (max(I(:)) - min(I(:))); % normalize 
-%       nu = 39;
-%       sigma = 4;
-%       x = 100; y = 100; z = 25; r = 50;
-%       phi = levelset3d(I,phi,nu,sigma,init);
-%   
 %   REFERENCE:
 %       Li Wang, Lei He, Arabinda Mishra, Chunming Li. 
 %       Active Contours Driven by Local Gaussian Distribution Fitting Energy.

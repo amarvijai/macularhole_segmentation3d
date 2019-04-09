@@ -1,11 +1,12 @@
 %% clear
-clc; clear all; close all;
+clc; clear; close all;
 
 %% path
-addpath('./lib');      
+addpath('./lib');
+addpath(genpath('./3rdParty'));
 
 %% Parameters
-d = [11.58, 3.87, 32];                                                      % pixels to microns scaling
+d = [3.87, 5.77, 31];                                                      % pixels to microns scaling
 x= 25; y = 30; z = 25; r = 7;                                               % seed initial and radius
 sigma = 4;                                                                   
 nu = 39;                                                                    % length term (smoothness)
@@ -45,17 +46,26 @@ scale = d(:)/d(2);
 immh = slice3d(imth,imneg,scale(1),scale(2),scale(3));
 
 %% resize
-resize = d/10;
-immhs = resize3d(immh,resize);
+scale = d/d(1);
+immhs = resize3d(immh,scale);
 
 %% measure
-[xl,ry,rz,volume,surfacearea,height,basearea,basediameter,toparea, ... 
-topdiameter, minimumdiameter] = measurement3d(immhs);
+[rx,ry,rz,xmdbs,ymdbs,zmdbs,height,basetomld,minimumdiametermajor,minimumdiameterminor,...
+    basediametermajor,basediameterminor,bs,mld,lengthbase1,lengthbase2,sloppyangle1,sloppyangle2,baseangle,meridianangle,...
+    locbs,locmld,baseplane,mldplane,startx,starty,endx,endy,base,mldelevationangle1,mldelevationangle2,...
+    topplane,tp,topdiametermajor,topdiameterminor,topangle] = measurement3d(immhs);
 
 %% same metrics with published paper
-table(:) = [volume./10^3, surfacearea./10^4, basearea./10^4,...
-                basediameter./10^2, toparea./10^4, topdiameter./10^2,...
-                height./10^2, minimumdiameter./10^2];
+c = d(1);
+s = d(1)/10;
+minormldangle = meridianangle + 90;
+minorbsangle = baseangle + 90;
+minortpangle = topangle + 90;
+[volume,surfacearea,MLD_area,BD_area,TP_area] = volarea(immhs,mld,bs,tp,s);
+table = [height.*c,basetomld.*c,minimumdiametermajor.*c,minimumdiameterminor.*c,...
+    basediametermajor.*c,basediameterminor.*c,lengthbase1.*c,sloppyangle1,lengthbase2.*c,sloppyangle2,...
+    meridianangle,minormldangle,mldelevationangle1,mldelevationangle2,baseangle,minorbsangle,topdiametermajor.*c,...
+    topdiameterminor.*c,topangle,minortpangle,volume./10^3,surfacearea./10^4,MLD_area./10^4,BD_area./10^4,TP_area./10^4];
 
 %% plot
 figure, plotim3d(im,immh,26);
