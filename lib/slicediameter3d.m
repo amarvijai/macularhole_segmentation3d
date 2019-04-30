@@ -13,6 +13,7 @@ for j=m:n
     cc = bwconncomp(v1);
     v1 = bwareaopen(v1, max(cellfun(@length, cc.PixelIdxList)));
     v = imrotate(v1,90,'bilinear');
+    v = flipdim(v,1);
     stats = regionprops('table',v,'Centroid', 'MajorAxisLength','MinorAxisLength','Orientation');
     diametermax(j) = stats.MajorAxisLength;
     diametermin(j) = stats.MinorAxisLength;
