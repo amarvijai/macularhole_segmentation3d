@@ -1,4 +1,4 @@
-function [startx,starty,endx,endy,lengthbase1,lengthbase2,base,baseangle,sloppyangle1,sloppyangle2] = baselengthplaneall(immhs,baseplane)
+function [startx,starty,endx,endy,lengthbase,lengthbase1,lengthbase2,base,baseposition,sloppyangle1,sloppyangle2] = baselengthplaneall(immhs,baseplane)
     bsxy = squeeze(max(baseplane,[],3));
     bsxy = bwmorph(bsxy,'bridge');
     [startx1,starty1,endx1,endy1,lengthbase1,sloppyangle1] = baselength(bsxy);
@@ -12,7 +12,7 @@ function [startx,starty,endx,endy,lengthbase1,lengthbase2,base,baseangle,sloppya
         endx = endx1;
         endy = endy1;
         base = squeeze(max(immhs,[],3));
-        baseangle = 0;
+        baseposition = 0;
         sloppyangle = sloppyangle1;
     else
         lengthbase = lengthbase2;
@@ -21,7 +21,7 @@ function [startx,starty,endx,endy,lengthbase1,lengthbase2,base,baseangle,sloppya
         endx = endx2;
         endy = endy2;
         base = squeeze(max(immhs,[],2));
-        baseangle = 90;
+        baseposition = 90;
         sloppyangle = sloppyangle2;
     end
 end

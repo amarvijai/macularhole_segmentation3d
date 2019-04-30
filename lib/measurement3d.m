@@ -1,5 +1,5 @@
 function [rx,ry,rz,xmdbs,ymdbs,zmdbs,height,basetomld,minimumdiametermajor,minimumdiameterminor,...
-    basediametermajor,basediameterminor,bs,mld,lengthbase1,lengthbase2,sloppyangle1,sloppyangle2,baseangle,meridianangle,...
+    basediametermajor,basediameterminor,bs,mld,lengthbase1,lengthbase2,sloppyangle1,sloppyangle2,lengthbase,baseposition,baseangle,meridianangle,...
     locbs,locmld,baseplane,mldplane,startx,starty,endx,endy,base,mldelevationangle1,mldelevationangle2,...
     topplane,tp,topdiametermajor,topdiameterminor,topangle] = measurement3d(im)
 %%  This is Various volumetric measurement of the hole
@@ -47,19 +47,19 @@ bs1 = squeeze(max(baseplane,[],1));
 cc = bwconncomp(bs1);
 bs1 = bwareaopen(bs1, max(cellfun(@length, cc.PixelIdxList)));
 bs = imrotate(bs1,90,'bilinear');
-bs = = flipdim(bs,1);
+bs = flipdim(bs,1);
 stats = regionprops('table',bs,'Centroid', 'MajorAxisLength','MinorAxisLength','Orientation');
 basediametermajor = stats.MajorAxisLength;
 basediameterminor = stats.MinorAxisLength;
 baseangle = stats.Orientation;
-[startx,starty,endx,endy,lengthbase1,lengthbase2,base,baseangle,sloppyangle1,sloppyangle2] = baselengthplaneall(im,baseplane);
+[startx,starty,endx,endy,lengthbase,lengthbase1,lengthbase2,base,baseposition,sloppyangle1,sloppyangle2] = baselengthplaneall(im,baseplane);
 %% plane top area and diameter
 topplane = imperp3d(im,[rx(1),ry(1),rz(1)],d,x,y,z,round(lengths*0.20));
 tp1 = squeeze(max(topplane,[],1));
 cc = bwconncomp(tp1);
 tp1 = bwareaopen(tp1, max(cellfun(@length, cc.PixelIdxList)));
 tp = imrotate(tp1,90,'bilinear');
-tp = = flipdim(tp,1);
+tp = flipdim(tp,1);
 statstp = regionprops('table',tp,'Centroid', 'MajorAxisLength','MinorAxisLength','Orientation');
 topdiametermajor = statstp.MajorAxisLength;
 topdiameterminor = statstp.MinorAxisLength;
