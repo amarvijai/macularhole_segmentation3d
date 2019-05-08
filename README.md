@@ -22,5 +22,5 @@ If you find this code useful in your research and development, please consider c
 	    author      = {Yunzi Chen and Amar V. Nasrulloh and Ian Wilson and Caspar Geenen and Maged S. Habib and Boguslaw Obara and David H. W. Steel},
 	    title       = {Macular Hole Morphology and Measurement Using an Automated Three Dimensional Image Segmentation Algorithm},
 	    journal     = {Investigative Ophthalmology \& Visual Science},
-	    note 		= {(In preparation)}
+	    note	= {(In preparation)}
     }
