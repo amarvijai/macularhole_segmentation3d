@@ -17,3 +17,10 @@ If you find this code useful in your research and development, please consider c
         pages       = {580-589},
         year        = {2018}
     }
+    
+    @article{Steel-Nasrulloh2019,
+	    author      = {Yunzi Chen and Amar V. Nasrulloh and Ian Wilson and Caspar Geenen and Maged S. Habib and Boguslaw Obara and David H. W. Steel},
+	    title       = {Macular Hole Morphology and Measurement Using an Automated Three Dimensional Image Segmentation Algorithm},
+	    journal     = {Investigative Ophthalmology \& Visual Science},
+	    note 		= {(In preparation)}
+    }
