@@ -2,21 +2,20 @@ function [rx,ry,rz,xmdbs,ymdbs,zmdbs,height,basetomld,minimumdiametermajor,minim
     basediametermajor,basediameterminor,bs,mld,lengthbase1,lengthbase2,sloppyangle1,sloppyangle2,lengthbase,baseposition,baseangle,meridianangle,...
     locbs,locmld,baseplane,mldplane,startx,starty,endx,endy,base,mldelevationangle1,mldelevationangle2,...
     topplane,tp,topdiametermajor,topdiameterminor,topangle] = measurement3d(im)
-%%  This is Various volumetric measurement of the hole
+%%  This is Various shape measurement of the hole
 %   INPUT:
 %       im     - 3D image segmented after cutting surface
 %
 %   OUTPUT:
-%       Various volumetric measurement of the hole
+%       Various shape measurement of the hole
 %      
 %   USAGE:
-%       Volumetric measurement
+%       Shape measurement
 %
 %   AUTHOR:
 %       Amar V Nasrulloh
 %
-%% volume, surface area, lenght
-%% volume, surface area, lenght
+%
 [x,y,z] = ind2sub(size(im),find(im==1));
 [iml,xl,yl,zl] = imcentreline3d(im);
 %% smoothing line
@@ -65,7 +64,7 @@ topdiametermajor = statstp.MajorAxisLength;
 topdiameterminor = statstp.MinorAxisLength;
 topangle = statstp.Orientation;
 %% minimum diameters
-m = round(lengths*0.15);
+m = round(lengths*0.10);
 n = round(lengths*0.80);
 [minimumdiametermajor, minimumdiameterminor,meridianangle,locmlds] = slicediameter3d(m,n,rx,ry,rz,im,x,y,z);
 mldplane = imperp3d(im,[rx(locmlds),ry(locmlds),rz(locmlds)],d,x,y,z,1);

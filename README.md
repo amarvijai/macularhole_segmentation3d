@@ -23,7 +23,7 @@ If you find this code useful in your research and development, please consider c
     @article{Steel-Nasrulloh2019,
         author      = {Yunzi Chen and Amar V. Nasrulloh and Ian Wilson and Caspar Geenen and Maged S. Habib and Boguslaw Obara and David H. W. Steel},
         title       = {Macular hole morphology and measurement using an automated three dimensional image segmentation algorithm},
-        journal     = {Translational Vision Science & Technology},
+        journal     = {British Journal of Ophthalmology},
         note        = {Submitted},
         year        = {2019}
     }
