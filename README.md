@@ -25,5 +25,5 @@ If you find this code useful in your research and development, please consider c
         title       = {Macular hole morphology and measurement using an automated three dimensional image segmentation algorithm},
         journal     = {BMJ Open Ophthalmology},
         note        = {In Press},
-        year        = {2019}
+        year        = {2020}
     }
